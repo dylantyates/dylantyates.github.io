@@ -19,5 +19,12 @@
 
 <body>
   <h1>New Site Is On Its Way...</h1>
+  <script>
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for(let registration of registrations) {
+        registration.unregister()
+      }
+    });
+  </script>
 </body>
 </html>
