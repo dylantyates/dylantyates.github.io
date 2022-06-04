@@ -1,0 +1,83 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #334444;
+  font-size: 16px;
+  background: #fff;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  height: 100vh;
+  max-width: 100%;
+  overflow: hidden auto;
+}
+
+.avatar {
+  height: 96px;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  border: 4px solid #334444;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 2.4rem;
+}
+
+.center {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+ul > li {
+  padding: 1rem;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  background: #fff;
+  color: #334444;
+}
+
+a:hover,
+a:active {
+  background: #334444;
+  color: #fff;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 54px;
+  border: 2px solid #334444;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
