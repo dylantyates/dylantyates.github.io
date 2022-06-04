@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Redirect,
 } from "react-router-dom";
 import App from './App';
 
