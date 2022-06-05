@@ -5,9 +5,7 @@ export const Game = styled.div`
   height: 100vh;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
   text-align: center;
-  font-family: sans-serif;
   > * {
     box-sizing: border-box;
   }
@@ -15,6 +13,7 @@ export const Game = styled.div`
 
 export const Section = styled.div`
   display: block;
+  flex: 1 1 auto;
   padding: 0.5rem 0;
   font-size: 20px;
   font-weight: 500;
@@ -23,6 +22,13 @@ export const Section = styled.div`
   max-width: 100%;
   width: 200px;
   margin: 0 auto 10px auto;
+  &.plain {
+    background: transparent;
+    color: #000;
+    & > h1 {
+      margin: 0;
+    }
+  }
   &.up {
     background: #00ff00;
   }
@@ -31,6 +37,13 @@ export const Section = styled.div`
   }
   &.even {
     background: #999;
+  }
+  &.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin: 0;
   }
 `;
 
@@ -44,19 +57,28 @@ export const PayoutBar = styled.div`
   background: rgba(0, 0, 0, 0.14);
   &.win {
     background: rgba(0, 255, 0, 0.14);
-    &:after {
-      visibility: hidden;
-    }
   }
   &.lose {
     background: rgba(255, 0, 0, 0.14);
+  }
+  &.deposit {
     &:after {
-      visibility: hidden;
+      visibility: visible;
+      content: "YOUR BET EXCEEDS BALANCE";
+      padding-top: 24px;
+      background: rgba(0, 0, 0, 0.54);
+    }
+  }
+  &.default {
+    &:after {
+      visibility: visible;
+      content: "SPIN TO BEGIN GOOD LUCK!";
     }
   }
 
   &:after {
-    content: "SPIN TO BEGIN GOOD LUCK!";
+    content: "";
+    visibility: hidden;
     position: absolute;
     left: 0;
     right: 0;
@@ -85,12 +107,16 @@ export const SlotWrapper = styled.div`
 export const ReelCol = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ReelSquare = styled.div`
   display: inline-block;
+  box-sizing: border-box;
+  width: 76px;
   vertical-align: top;
-  flex: 1 1 auto;
+  flex: 1 1 76px;
   border: 2px solid #000;
   padding: 10px;
   margin: 5px;

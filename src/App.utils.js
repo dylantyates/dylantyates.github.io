@@ -17,13 +17,13 @@ export const generateRandomMatrix = (reels = 3, squares = 5) => {
     matrix.push(subMatrix);
   }
 
-  return matrix;
+  return { list: matrix };
 };
 
-export const matrixHas3x = (matrix) => {
-  return _some(_countBy(matrix.map(m => m[1])), val => val > 2);
+export const matrixHas3x = (reels) => {
+  return _some(_countBy(reels.list.map(m => m[1])), val => val > 2);
 }
 
-export const matrixHas2x = (matrix) => {
-  return _some(_countBy(matrix.map(m => m[1])), val => val > 1);
+export const matrixHas2x = (reels) => {
+  return _some(_countBy(reels.list.map(m => m[1])), val => val > 1);
 }
