@@ -2,13 +2,15 @@ import styled from 'styled-components';
 
 export const Game = styled.div`
   display: block;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   max-width: 100%;
   text-align: center;
   > * {
     box-sizing: border-box;
   }
+  font-family: 'Space Grotesk', sans-serif;
+  background: #fff;
 `;
 
 export const Section = styled.div`
@@ -102,6 +104,9 @@ export const SlotWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  @media screen and (max-width: 520px) {
+    transform: scale(0.8);
+  }
 `;
 
 export const ReelCol = styled.div`

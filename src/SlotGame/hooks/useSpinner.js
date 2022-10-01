@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState, useRef } from "react";
-import { generateRandomMatrix } from "../App.utils";
+import { generateRandomMatrix } from "../utils";
 
 const useInterval = (callback, delay, spinning) => {
   const savedCallback = useRef();
