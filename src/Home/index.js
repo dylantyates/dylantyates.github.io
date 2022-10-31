@@ -1,24 +1,19 @@
 import React from 'react';
-import { Card } from '../components';
-import { HomeWrapper, CardContainer } from './styles';
+import Grid from '@mui/material/Grid';
+import Projects from './Projects';
+import Tracks from './Tracks';
 
 const Home = () => (
-  <HomeWrapper>
-    <CardContainer>
-      <Card
-        image="slot-game.png"
-        title="React Slot Game"
-        body="A slot machine game for fun"
-        link="slot-game"
-      />
-      <Card
-        image="unity-game.png"
-        title="Unity Game"
-        body="A WEbGL Unity Game"
-        link="unity-game"
-      />
-    </CardContainer>
-  </HomeWrapper>
+  <Grid container spacing={6} sx={{ position: 'relative', top: 20 }}>
+    <Grid xl={6} item>
+      <Projects />
+    </Grid>
+    <Grid xl={6} item>
+      <Tracks />
+    </Grid>
+    <Grid item>
+    </Grid>
+  </Grid>
 )
 
 export default Home;

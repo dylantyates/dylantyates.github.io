@@ -1,20 +1,14 @@
+import Container from '@mui/material/Container';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
 import {
-  Home,
-  SlotGame
+  HomeLazy,
+  SlotGameLazy
 } from './routes';
 import Menu from './Menu';
-import { LoadingSpinner } from './styles';
-
-const Loading = () => (
-  <div>
-    <LoadingSpinner className="lds-dual-ring" />
-  </div>
-);
 
 const RedirectToGame = () => {
   window.location.href = `${window.location.origin}/game`;
@@ -22,15 +16,16 @@ const RedirectToGame = () => {
 }
 
 function App() {
-
   return (
     <Router>
       <Menu />
-      <Routes>
-        <Route path="/" element={<Home fallback={Loading} />} />
-        <Route path="/slot-game" element={<SlotGame fallback={Loading} />} />
-        <Route path="/unity-game" element={<RedirectToGame />} />
-      </Routes>
+      <Container sx={{ paddingTop: 8 }}>
+        <Routes>
+          <Route path="/" element={<HomeLazy fallback={(<div>Loading...</div>)} />} />
+          <Route path="/slot-game" element={<SlotGameLazy fallback={(<div>Loading...</div>)} />} />
+          <Route path="/unity-game" element={<RedirectToGame />} />
+        </Routes>
+      </Container>
     </Router>
   );
 }

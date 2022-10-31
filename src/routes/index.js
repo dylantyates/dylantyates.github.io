@@ -1,22 +1,21 @@
 import { lazy, Suspense } from 'react';
-import { LoadingSpinner } from '../styles';
 
-const LazyHome = lazy(() => import('../Home'));
-const LazySlotGame = lazy(() => import('../SlotGame/SlotGame'));
+const LazyImportHome = lazy(() => import('../Home'));
+const LazyImportSlotGame = lazy(() => import('../SlotGame/SlotGame'));
 
-const LazyLoadedHome = () => (
-  <Suspense fallback={<LoadingSpinner className="lds-udal-ring" />}>
-    <LazyHome />
+const HomeLazy = () => (
+  <Suspense fallback={null}>
+    <LazyImportHome />
   </Suspense>
 );
 
-const LazyLoadedSlotGame = () => (
-  <Suspense fallback={<LoadingSpinner className="lds-udal-ring" />}>
-    <LazySlotGame />
+const SlotGameLazy = () => (
+  <Suspense fallback={null}>
+    <LazyImportSlotGame />
   </Suspense>
 );
 
 export {
-  LazyLoadedHome as Home,
-  LazyLoadedSlotGame as SlotGame,
+  HomeLazy,
+  SlotGameLazy,
 }
