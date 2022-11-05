@@ -1,5 +1,7 @@
 import React from 'react';
 import { string } from 'prop-types';
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,6 +9,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 const Project = ({ image, title, body, link }) => {
   return (
@@ -43,10 +50,9 @@ const Project = ({ image, title, body, link }) => {
             <Button
               variant="contained"
               size="medium"
-              href={link}
               sx={{ fontWeight: 600, marginBottom: 2 }}
             >
-              View
+              <StyledLink to={link}>View</StyledLink>
             </Button>
           )}
         </CardActions>
