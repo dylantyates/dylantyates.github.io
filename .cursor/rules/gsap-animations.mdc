@@ -1,0 +1,29 @@
+---
+description: GSAP animation patterns for professional, corporate-style motion
+globs: "**/*.js,**/*.ts,**/*.astro,**/*.tsx"
+alwaysApply: false
+---
+
+# GSAP Animation Guidelines
+
+## Use GSAP for high-impact motion
+
+- **Hero / above-the-fold**: Stagger title and subtitle (opacity + y) on load; use `power3.out` or `power2.out` for a polished feel.
+- **Scroll reveals**: Use **ScrollTrigger** so sections or cards animate in as they enter the viewport (`start: 'top 85%'`). Use `.fromTo()` for reliable starting values when elements are reused or when multiple ScrollTriggers affect the page.
+- **Hover / micro-interactions**: Light scale (1.02–1.05) or short transitions on buttons and links; keep duration ~0.2s so it feels responsive.
+
+## Hook animations via data attributes
+
+- Use **data-animate** so HTML stays clean and scripts can target elements predictably: `data-animate="hero"`, `data-animate="reveal"`, `data-animate="link"`.
+- One central script (e.g. `page-animations.ts`) that runs on load: register ScrollTrigger, then run hero timeline, scroll reveals loop, and optional hover listeners.
+
+## Best practices
+
+- **Always respect `prefers-reduced-motion`**: Check `window.matchMedia('(prefers-reduced-motion: reduce)').matches` and skip or simplify GSAP animations when true.
+- **ScrollTrigger**: Prefer one trigger per section/element; avoid nesting ScrollTrigger inside a single timeline for multiple sections (use a loop instead). Use `toggleActions: 'play none none none'` for one-shot reveals.
+- **Performance**: Animate `transform` and `opacity` when possible (GPU-friendly). Use `will-change: transform` sparingly and only on animated elements.
+- **Easing**: `power2.out`, `power3.out`, or `expo.out` for entrances; `power2.inOut` for symmetric transitions.
+
+## Licensing
+
+- GSAP core is free; **ScrollTrigger** and some plugins are part of Club GreenSock. Check [gsap.com/licensing](https://gsap.com/licensing/) for commercial use; free tier is generous for many sites.

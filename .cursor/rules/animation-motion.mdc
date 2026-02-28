@@ -1,0 +1,37 @@
+---
+description: CSS animation and motion best practices
+globs: "**/*.css,**/*.astro,**/*.tsx,**/*.ts"
+alwaysApply: false
+---
+
+# Animation and Motion Best Practices
+
+## Accessibility first
+
+- **Respect `prefers-reduced-motion`**: Use `@media (prefers-reduced-motion: reduce)` to turn off or simplify non-essential animations when the user has asked the OS to reduce motion (vestibular issues, ADHD, etc.).
+- **Avoid rapid flashing**: WCAG says no more than 3 flashes per second; avoid fast light/dark flicker (photosensitive epilepsy). Use [PEAT](https://trace.umd.edu/peat/) for content with flashing.
+- **Non-essential motion**: If the animation isn’t needed to understand the content, consider disabling it by default or providing a pause/stop/hide control (WCAG: auto-playing motion &gt; 5s should be controllable).
+
+## CSS approach
+
+- **Progressive enhancement**: Prefer a static or reduced-motion default; add full motion only when safe and useful.
+- **Disable cleanly**: Under reduced motion, set `animation: none` and `transition: none` (or a very short transition) so the layout doesn’t depend on the animation.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .my-animated-thing {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
+}
+```
+
+## When you need a library
+
+- **GSAP**: Industry standard for high-end, corporate-style motion (EA, Google, Nike, etc.). ScrollTrigger for scroll reveals, timelines for hero staggers, robust easing and performance. See `.cursor/rules/gsap-animations.mdc` for patterns. Check [gsap.com/licensing](https://gsap.com/licensing/) for commercial use.
+- **Motion** ([motion.dev](https://motion.dev)): MIT-licensed alternative; great for React/Vue and smaller bundles.
+- **CSS-only**: Use `@keyframes` and `transition` for simple effects; keep animations in CSS and respect `prefers-reduced-motion` in the same stylesheet.
+
+## Summary
+
+Prefer minimal, purposeful motion; always respect `prefers-reduced-motion`; avoid rapid flashing; add a library (e.g. Motion) when you need complex or orchestrated animations.

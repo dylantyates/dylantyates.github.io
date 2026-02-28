@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "react",
+    "jsx-a11y"
+  ],
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "ignorePatterns": [
+    "dist",
+    ".astro",
+    "node_modules",
+    "*.config.mjs",
+    "*.config.cjs",
+    "*.config.ts"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "style": "warn",
+    "perf": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "rules": {
+        "react/jsx-no-target-blank": "warn"
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+---
+description: Tailwind CSS styling — minimal, maintainable, web standards
+globs: "**/*.astro,**/*.tsx,**/src/**/*.css"
+alwaysApply: false
+---
+
+# Tailwind Styling Best Practices
+
+## Design tokens in one place
+
+- Define **design tokens** in CSS with Tailwind v4’s `@theme` (in `src/styles/global.css` or the layout that loads first).
+- Put colors, spacing, fonts, radius, and shadows in `@theme` so they become utilities and CSS variables. Avoid one-off arbitrary values when a token makes sense.
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0d0d0d;
+  --color-surface: #161616;
+  --color-muted: #8c8986;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --radius-md: 0.5rem;
+}
+```
+
+- Use **`:root`** only for values that should not generate utilities (e.g. app-only variables). Prefer `@theme` for anything that maps to utilities.
+
+## Prefer utilities; minimal custom CSS
+
+- Style with **Tailwind utility classes** first. Add component-scoped `<style>` or extra CSS only when there is no suitable utility or the same pattern repeats and deserves a single name.
+- Keep **global CSS** minimal: `@import "tailwindcss"`, `@theme`, and a small set of base styles (e.g. `html`/`body`). Let the layout and components use utilities.
+
+## Class order and readability
+
+- Order classes in a consistent way: **layout** (flex, grid, block) → **sizing** → **spacing** (margin, padding) → **typography** → **colors/backgrounds** → **borders** → **effects/transition**.
+- Prefer **one logical group per line** or a short comment when it helps. Avoid a single unreadable long line of classes.
+
+```html
+<!-- Prefer -->
+<main class="mx-auto flex min-h-screen max-w-2xl flex-col gap-8 px-6 py-12">
+  <h1 class="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+
+<!-- Avoid -->
+<main class="flex flex-col gap-8 px-6 py-12 mx-auto min-h-screen max-w-2xl">
+```
+
+## Semantic HTML + utilities
+
+- Apply utilities on **semantic elements** (main, section, header, nav, article, footer) instead of adding wrapper divs only for styling. Prefer fewer elements and clearer structure.
+
+## Avoid duplicating styles — set on parent when shared
+
+- If a **color, font, or other style** applies to all (or most) children, put it on the **parent** once instead of repeating the same class on every child.
+- Prefer **inheritance**: `text-[var(--color-text-muted)]` on a `<section>` so its `<p>`, `<dd>`, etc. inherit; only override on elements that differ.
+- Same idea for **font size**, **font family**, or **line-height** on a card or list container so children don’t each need the same classes.
+
+```html
+<!-- Prefer: one place for shared color -->
+<section class="text-[var(--color-text-muted)] text-sm">
+  <p>First paragraph.</p>
+  <p>Second paragraph.</p>
+</section>
+
+<!-- Avoid: same class on every child -->
+<section>
+  <p class="text-[var(--color-text-muted)] text-sm">First paragraph.</p>
+  <p class="text-[var(--color-text-muted)] text-sm">Second paragraph.</p>
+</section>
+```
+
+## Responsive and theming
+
+- Use **mobile-first** breakpoints: base styles for small screens, then `sm:`, `md:`, `lg:` as needed. Don’t over-specify breakpoints; add them only when the layout or type actually changes.
+- If you support dark/light or multiple themes, drive it with **one mechanism** (e.g. `class="dark"` on `html` or `data-theme` on a root element) and use `@theme` / CSS variables or Tailwind’s dark variant so tokens stay the single source of truth.
+
+## Maintainability
+
+- **Reuse tokens** from `@theme` (e.g. `text-[var(--color-muted)]`, `rounded-[var(--radius-md)]`) instead of hardcoding hex or rem values in markup.
+- If a repeated pattern grows (e.g. card, link list), extract a **small component** or a single **custom class** in global CSS and use that name instead of duplicating long utility strings. Prefer one shared definition over many copies.

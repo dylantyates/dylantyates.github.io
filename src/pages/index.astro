@@ -1,0 +1,174 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+
+// Progress for each "Currently" item (0–100). Set these to reflect progress on that task.
+const currentlyProgress = {
+  building: 100,
+  listening: 100,
+  reading: 100,
+  watching: 100,
+};
+---
+
+<BaseLayout
+  title="Dylan Yates"
+  description="Dylan Yates — personal presence, projects, and links."
+>
+  <main class="mx-auto min-h-screen max-w-2xl px-6 py-4 flex flex-col gap-4">
+    <header class="pt-4" data-animate="hero">
+      <h1 class="mb-2 text-3xl font-bold tracking-tight text-text">
+        Dylan Yates
+      </h1>
+      <p class="text-text-muted text-lg">Houston, Texas</p>
+    </header>
+    <section class="py-6" data-animate="reveal" data-reveal-stagger>
+      <dl class="flex flex-col gap-6 m-0 text-sm text-text-muted">
+        <div>
+          <div
+            class="section-progress section-progress--item"
+            role="progressbar"
+            aria-valuenow={currentlyProgress.building}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Progress for Building"
+          >
+            <div class="section-progress__track">
+              <div
+                class="section-progress__fill section-progress__fill--building"
+                style={`width: ${currentlyProgress.building}%`}
+              >
+              </div>
+            </div>
+          </div>
+          <dt class="mb-1.5 font-semibold text-text">Hobbies</dt>
+          <dd class="m-0">
+            Music, doggos, hiking, camping, kayaking, and coding.
+          </dd>
+        </div>
+        <br />
+        <br />
+        <div>
+          <div
+            class="section-progress section-progress--item"
+            role="progressbar"
+            aria-valuenow={currentlyProgress.listening}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Progress for Listening"
+          >
+            <div class="section-progress__track">
+              <div
+                class="section-progress__fill section-progress__fill--listening"
+                style={`width: ${currentlyProgress.listening}%`}
+              >
+              </div>
+            </div>
+          </div>
+          <dt class="mb-1.5 font-semibold text-text">Career</dt>
+          <dd class="m-0">
+            Senior Software Engineer at <a
+              href="https://blinds.com"
+              target="_blank"
+              rel="noopener noreferrer">Blinds.com</a
+            >/<a
+              href="https://homedepot.com"
+              target="_blank"
+              rel="noopener noreferrer">The Home Depot</a
+            >
+          </dd>
+          <br />
+          <dd class="m-0">
+            Software Developer at
+            <a href="https://nrg.com" target="_blank" rel="noopener noreferrer"
+              >NRG Energy</a
+            >
+          </dd>
+          <br />
+          <dd class="m-0">
+            Software Developer at <a
+              href="https://www.linkedin.com/company/webev/"
+              target="_blank"
+              rel="noopener noreferrer">Webev</a
+            >
+          </dd>
+        </div>
+        <div>
+          <div
+            class="section-progress section-progress--item"
+            role="progressbar"
+            aria-valuenow={currentlyProgress.watching}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Progress for Watching"
+          >
+            <div class="section-progress__track">
+              <div
+                class="section-progress__fill section-progress__fill--watching"
+                style={`width: ${currentlyProgress.watching}%`}
+              >
+              </div>
+            </div>
+          </div>
+          <dt class="mb-1.5 font-semibold text-text">Education</dt>
+          <dd class="m-0">
+            Bachelor of Science in Economics from <a
+              href="https://tamu.edu"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Texas A&amp;M University - College Station</a
+            >
+          </dd>
+          <br />
+          <dd class="m-0">
+            Masters of Science in Global Energy Management from <a
+              href="https://uh.edu"
+              target="_blank"
+              rel="noopener noreferrer">University of Houston</a
+            >
+          </dd>
+          <dd class="m-0">
+            (Coursework in Business Analytics, Finance, Accounting and Trading)
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="py-6" data-animate="reveal" data-reveal-stagger>
+      <h2
+        class="mb-4 text-xs font-semibold uppercase tracking-wider text-text-muted"
+      >
+        Elsewhere
+      </h2>
+      <ul class="flex flex-wrap gap-4 list-none p-0 m-0 font-mono text-sm">
+        <li>
+          <a
+            href="https://github.com/dylantyates"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block rounded-(--radius-md) px-2 py-1 transition-colors hover:bg-surface"
+            data-animate="link"
+          >
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/dylanyates/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block rounded-(--radius-md) px-2 py-1 transition-colors hover:bg-surface"
+            data-animate="link"
+          >
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="mt-auto pt-12" data-animate="reveal" data-reveal-stagger>
+      <p class="text-text-muted text-sm">
+        &copy; {new Date().getFullYear()} Dylan Yates. All rights reserved.
+      </p>
+    </footer>
+  </main>
+</BaseLayout>

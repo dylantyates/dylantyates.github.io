@@ -1,0 +1,53 @@
+---
+description: Astro development best practices for this project
+globs: "**/*.astro,**/astro.config.*,**/src/**/*.ts,**/src/**/*.tsx"
+alwaysApply: false
+---
+
+# Astro Best Practices
+
+## Architecture
+
+- Prefer **static** by default: use server or client directives only when needed.
+- Put reusable UI in `src/components/`, layouts in `src/layouts/`, pages in `src/pages/`.
+- Use **Astro** for structure and HTML; add **React/Vue/Svelte** only for islands that need interactivity.
+
+## Components & Layouts
+
+- Keep the **frontmatter** (---) at the top; put all imports and logic there.
+- Pass content via **slots**; use **named slots** when a layout has multiple regions.
+- Prefer **single responsibility**: one layout for shell (html, meta, global styles), pages compose content.
+
+## Performance
+
+- Use **native HTML and CSS** in `.astro` when possible; avoid shipping JS for static content.
+- Add `client:load`, `client:idle`, or `client:visible` only on components that must be interactive.
+- Prefer **scoped styles** in the component (`<style>`) or global in the layout; avoid duplicate global rules.
+
+## Content & SEO
+
+- Set **title** and **description** (and other meta) in the layout or per-page; use `Astro.props` for dynamic values.
+- Use semantic HTML: **header**, **main**, **nav**, **section**, **article**, **footer**.
+- External links: use `target="_blank"` with `rel="noopener noreferrer"`.
+
+## Code Style
+
+- Use **kebab-case** for component file names (e.g. `base-layout.astro`).
+- Use **PascalCase** for component names in imports and usage.
+- Prefer **type-safe props** with TypeScript interfaces in frontmatter.
+
+```astro
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Default' } = Astro.props;
+---
+```
+
+## Static Site (GitHub Pages)
+
+- Rely on **static build** (`astro build`); no server adapters.
+- Put assets in `public/` for unchanged URLs; use `import` for hashed/cached assets.
+- Keep **site** and **base** in `astro.config.mjs` correct for deployment (e.g. custom domain or repo path).

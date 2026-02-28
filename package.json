@@ -1,50 +1,23 @@
 {
-  "name": "dylan-yates",
-  "version": "0.1.0",
+  "name": "dylantyates.github.io",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.10.11",
-    "lodash": "^4.17.21",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.6",
-    "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "oxlint ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.18.0",
+    "gsap": "^3.12.5",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^4.0.0",
-    "react-scripts": "5.0.1"
+    "@astrojs/ts-plugin": "^1.10.6",
+    "oxlint": "^1.0.0",
+    "typescript": "^5.9.3"
   }
 }

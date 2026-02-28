@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg: #0d0d0d;
+  --color-surface: #161616;
+  --color-border: #2a2a2a;
+  --color-text: #e8e6e3;
+  --color-text-muted: #8c8986;
+  --color-accent: #7eb8da;
+  --color-accent-hover: #5a9ab8;
+  /* Progress bar fill colors (solid) */
+  --color-fill-building: #7eb8da;
+  --color-fill-listening: #7dcea0;
+  --color-fill-reading: #f4b942;
+  --color-fill-watching: #bb8fce;
+
+  /* Typography */
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Spacing / layout */
+  --radius-md: 0.5rem;
+}
+
+/* Base styles: layout loads this, so body gets theme-aware defaults */
+@layer base {
+  html {
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-hover);
+  }
+}
+
+/* Section progress bar */
+.section-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-progress--item {
+  margin-bottom: 0.5rem;
+}
+
+.section-progress__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.section-progress__track {
+  height: 6px;
+  width: 100%;
+  background: var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.section-progress__fill {
+  height: 100%;
+  min-width: 2px;
+  border-radius: 3px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.section-progress__fill--building {
+  background: var(--color-fill-building);
+}
+
+.section-progress__fill--listening {
+  background: var(--color-fill-listening);
+}
+
+.section-progress__fill--reading {
+  background: var(--color-fill-reading);
+}
+
+.section-progress__fill--watching {
+  background: var(--color-fill-watching);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-progress__fill {
+    transition: none;
+  }
+}
